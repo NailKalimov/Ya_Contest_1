@@ -22,19 +22,19 @@ import numpy as np
 
 a, b, c, d, e, f = (int(input()) for _ in range(6))
 A = np.array([[a, b], [c, d]], float)
-B = np.array([f, e], float)
+B = np.array([e, f], float)
 AB = np.c_[A, B]
-rank_A = np.linalg.matrix_rank(A)
-rank_AB = np.linalg.matrix_rank(AB)
-print(rank_A, rank_AB)
-# if rank_A == rank_AB:
-#     # СЛАУ совместна
-#     if rank_A == 2:
-#         # имеет единственное решение
-#         x = np.linalg.solve(A, B)
-#         print(2, x[0], x[1])
-#     else:
-#         # имеет бесконечно много решений
-#         pass   
-# else:
-#     print(0)
+rang_A = np.linalg.matrix_rank(A)
+rang_AB = np.linalg.matrix_rank(AB)
+print(f'rang A = {rang_A} rang Ab = {rang_AB}')
+if rang_A == rang_AB:
+    # СЛАУ совместна
+    if rang_A == 2:
+        # имеет единственное решение
+        x = np.linalg.solve(A, B)
+        print(2, x[0], x[1])
+    else:
+        # имеет бесконечно много решений
+        pass   
+else:
+    print(0)
