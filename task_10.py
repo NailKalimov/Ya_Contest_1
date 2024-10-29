@@ -17,26 +17,24 @@ x=x0, y — любое, то программа должна вывести чи
 
 Числа x0 и y0 будут проверяться с точностью до пяти знаков после точки."""
 
+import numpy as np
 
-from sympy import symbols, Eq, nsolve
 
 a, b, c, d, e, f = (int(input()) for _ in range(6))
-# Определение переменных
-x1, x2 = symbols('x1 x2')
-
-# Определение системы уравнений
-equations = [
-    Eq(a*x1 + b*x2, e),
-    Eq(c*x1 + d*x2, f)    
-]
-
-# Начальное предположение для численного решения
-initial_guess = [0, 0]
-
-# Нахождение численного решения
-numerical_solution = nsolve(equations, (x1, x2), initial_guess)
-
-# Вывод результатов
-print("Численное решение:")
-print(f"x1 = {numerical_solution[0]}")
-print(f"x2 = {numerical_solution[1]}")
+A = np.array([[a, b], [c, d]], float)
+B = np.array([f, e], float)
+AB = np.c_[A, B]
+rank_A = np.linalg.matrix_rank(A)
+rank_AB = np.linalg.matrix_rank(AB)
+print(rank_A, rank_AB)
+# if rank_A == rank_AB:
+#     # СЛАУ совместна
+#     if rank_A == 2:
+#         # имеет единственное решение
+#         x = np.linalg.solve(A, B)
+#         print(2, x[0], x[1])
+#     else:
+#         # имеет бесконечно много решений
+#         pass   
+# else:
+#     print(0)
