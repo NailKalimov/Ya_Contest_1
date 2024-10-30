@@ -14,27 +14,56 @@ x=x0, y — любое, то программа должна вывести чи
 Если система имеет бесконечно много решений вида y=y0, x — любое, то программа 
 должна вывести число 4, а затем значение y0. Если любая пара чисел (x,y) 
 является решением, то программа должна вывести число 5.
-
 Числа x0 и y0 будут проверяться с точностью до пяти знаков после точки."""
+# При выполнении задания нельзя использовать библиотеку numpy
+# AB = [[a, b, e],
+#        [c, d, f]]
 
-import numpy as np
 
 
-a, b, c, d, e, f = (int(input()) for _ in range(6))
-A = np.array([[a, b], [c, d]], float)
-B = np.array([e, f], float)
-AB = np.c_[A, B]
-rang_A = np.linalg.matrix_rank(A)
-rang_AB = np.linalg.matrix_rank(AB)
-print(f'rang A = {rang_A} rang Ab = {rang_AB}')
+def calc_rang_AB(AB):
+    if AB[0][0] * AB[1][1] - AB[1][0] * AB[0][1] != 0 or \
+            AB[0][0] * AB[1][2] - AB[1][0] * AB[0][2] != 0 or \
+            AB[0][1] * AB[1][2] - AB[1][1] * AB[0][2] != 0:
+        return 2
+    elif any(AB[i][j] != 0 for i in range(2) for j in range(3)):
+        return 1
+    return 0
+
+
+def calc_rang_A(A):
+    if A[0][0] * A[1][1] - A[1][0] * A[0][1] != 0:
+        return 2
+    elif any(A[i][j] != 0 for i in range(2) for j in range(2)):
+        return 1
+    return 0
+
+
+a, b, c, d, e, f = (float(input()) for _ in range(6))
+rang_A = calc_rang_A([[a, b], [c, d]])
+rang_AB = calc_rang_AB([[a, b, e],
+                        [c, d, f]])
 if rang_A == rang_AB:
     # СЛАУ совместна
     if rang_A == 2:
         # имеет единственное решение
-        x = np.linalg.solve(A, B)
+        x = [((e*d - f*b) / (a*d - c*b)), ((f*a - e*c) / (a*d - c*b))]
         print(2, x[0], x[1])
     else:
         # имеет бесконечно много решений
-        pass   
+        if b == 0 and a != 0:
+            print(3, e/a)
+        elif a == 0 and b != 0:
+            print(4, e/b)
+        elif d == 0 and c != 0:
+            print(3, f/c)
+        elif c == 0 and d != 0:
+            print(4, f/d)
+        elif b != 0:
+            print(1, -a/b, e/b)
+        elif d != 0:
+            print(1, -c/d, f/d)
+        elif all(v == 0 for v in [a, b, c, d, e, f]):
+            print(5)
 else:
     print(0)
