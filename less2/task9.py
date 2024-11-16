@@ -21,8 +21,7 @@
 дописать к последовательности, а потом M чисел (каждое — от 1 до 9) — 
 числа, которые надо дописать к последовательности.
 """
-def make_symmetric(seq):
-    """Determine the minimum numbers to append to make the sequence symmetric."""
+def identify_symmetry(seq):
     for start in range(len(seq)):
         i = start
         j = len(seq) - 1
@@ -34,5 +33,8 @@ def make_symmetric(seq):
                 if start:
                     print(' '.join(str(x) for x in seq[start - 1::-1]))
                 return
+            
 
-make_symmetric(seq)
+n = int(input())
+seq = list(map(int, input().split()))
+identify_symmetry(seq)
