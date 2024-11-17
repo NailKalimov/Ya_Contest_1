@@ -13,27 +13,25 @@
 """
 
 lst = list(map(int, input().split()))
-if lst[0] >= lst[1]: # make sure that m1 != m2 and s1 != s2
-    m1, m2 = lst[0], lst[1]
-    s1, s2 = lst[0], lst[1]
+if lst[0] >= lst[1]:
+    max1, max2 = lst[0], lst[1]
+    min1, min2 = lst[1], lst[0]
 elif lst[0] < lst[1]:
-    m1, m2 = lst[1], lst[0]
-    s1, s2 = lst[1], lst[0]
+    max1, max2 = lst[1], lst[0]
+    min1, min2 = lst[0], lst[1]
 
 for i in lst:
-    # maximum and second maximum
-    if i > m1:
-        m1, m2 = i, m1
-    elif i > m2:
-        m2 = i
-    # minimum and second minimum
-    if i < s1:
-        s1, s2 = i, s1
-    elif i < s2:
-        s2 = i
+    if i > max1:
+        max1, max2 = i, max1
+    elif i > max2:
+        max2 = i
+    if i < min1:
+        min1, min2 = i, min1
+    elif i < min2:
+        min2 = i
 if len(lst) == 2:
     print(" ".join(str(i) for i in sorted(lst)))
-elif m1 * m2 > s1 * s2:
-    print(" ".join(str(i) for i in sorted([m1, m2])))
+elif max1 * max2 > min1 * min2:
+    print(" ".join(str(i) for i in sorted([max1, max2])))
 else:
-    print(" ".join(str(i) for i in sorted([s1, s2])))
+    print(" ".join(str(i) for i in sorted([min1, min2])))

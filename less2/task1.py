@@ -8,13 +8,15 @@
 Вывод
 YES"""
 
+
 def find(s):
-	seq = [int(i) for i in s.split()]
-	support = seq[0]
-	for i in range(1, len(seq)):
-		if seq[i] <= support:
-			return 'NO'
-		support = seq[i]
-	return'YES'
+    seq = [int(i) for i in s.split()]
+    support = seq[0]
+    for i in range(1, len(seq)):
+        if seq[i] <= support:
+            return 'NO'
+        support = seq[i]
+    return 'YES'
+
 
 print(find(input()))

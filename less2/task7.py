@@ -6,6 +6,7 @@ A4B3C2YZD4E4F5G2A8B9
 Т.е. если символ встречается 1 раз, то он не изменяется, если встречается 
 несколько раз, то после его первого вхождения указывается количество повторений"""
 
+
 def easypeasy(string):
     last_symbol = string[0]
     answer = []
@@ -14,13 +15,14 @@ def easypeasy(string):
             answer.append(last_symbol)
             last_symbol = i
     answer.append(last_symbol)
-    return "".join(answer) # 'AAAAAAAAABBBBBBBBBBBBCDGGGGGGGGGG' -> 'ABCDG'
+    return "".join(answer)  # 'AAAAAAAAABBBBBBBBBBBBCDGGGGGGGGGG' -> 'ABCDG'
 
 
 def pack(char, count):
     if count > 1:
-        return char + str(count) # 'AAAAAA' -> 'A5'
-    return char 
+        return char + str(count)  # 'AAAAAA' -> 'A5'
+    return char
+
 
 def RLE(string):
     previous_simbol = string[0]

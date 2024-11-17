@@ -1,6 +1,7 @@
 """Дана последовательность слов. вывести все самые короткие слова 
 через пробел"""
 
+
 def find_short_words(words):
     minlen = len(words[0])
     for word in words:
@@ -15,5 +16,5 @@ def find_short_words(words):
     return " ".join(answer)
     # return answer
 
-# P.s. Использование answer:str Делает алгоритм нелинейным по сложности, 
+# P.s. Использование answer:str Делает алгоритм нелинейным по сложности,
 # т.к. в каждой итерации происходит создание нового объекта answer:str

@@ -31,5 +31,5 @@ for table in possible_tables:
     if table_area < min_table_area:
         min_table = table
         min_table_area = table_area
-        
+
 print(*(i for i in min_table))

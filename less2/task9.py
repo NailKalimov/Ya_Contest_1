@@ -21,6 +21,8 @@
 дописать к последовательности, а потом M чисел (каждое — от 1 до 9) — 
 числа, которые надо дописать к последовательности.
 """
+
+
 def identify_symmetry(seq):
     for start in range(len(seq)):
         i = start
@@ -33,7 +35,7 @@ def identify_symmetry(seq):
                 if start:
                     print(' '.join(str(x) for x in seq[start - 1::-1]))
                 return
-            
+
 
 n = int(input())
 seq = list(map(int, input().split()))

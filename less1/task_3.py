@@ -23,15 +23,19 @@
 
 from sys import stdin
 
+
 def normalize_number(number):
-    trans = str.maketrans({'+': None, "(": None, ")": None, "-": None, "\n": None})
+    trans = str.maketrans(
+        {'+': None, "(": None, ")": None, "-": None, "\n": None})
     return number.translate(trans)
+
 
 def is_number_in_book(new_number, phone_book):
     for number in phone_book:
         if new_number == number or (new_number == number[4:] and number[1:4] == '495'):
             return 'YES'
     return 'NO'
+
 
 new_number = normalize_number(stdin.readline().rstrip())
 phone_book = [normalize_number(i) for i in stdin.readlines()]

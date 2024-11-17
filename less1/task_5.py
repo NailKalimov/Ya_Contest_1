@@ -22,6 +22,7 @@ K2, которая расположена в подъезда P2 на этаже
 Ввод 3 2 2 2 1	Вывод -1 -1
 """
 
+
 def calculate_floor_entracne_number(flat_number, floors_in_town, flats_on_floor):
     floors_before = (flat_number - 1) // flats_on_floor
     entrance = floors_before // floors_in_town + 1
@@ -36,6 +37,7 @@ def check_valid(floors_in_town, flat_number, entrance_number, floor_number, flat
         return nentrance, nfloor
     return -1, - 1
 
+
 if __name__ == '__main__':
     MAX_APP_ON_FLOOR = 100
     data = list(map(int, input().split()))
@@ -46,11 +48,13 @@ if __name__ == '__main__':
     flats_on_floor = -1
 
     for flats_on_floor in range(1, MAX_APP_ON_FLOOR):
-        nentrance, nfloor = check_valid(M, k2, p2, f2, flats_on_floor=flats_on_floor)
+        nentrance, nfloor = check_valid(
+            M, k2, p2, f2, flats_on_floor=flats_on_floor)
         if nentrance != -1:
             goodflag = True
             if ent == -1:
-                ent, floor = calculate_floor_entracne_number(flat_number=k1, floors_in_town=M, flats_on_floor=flats_on_floor)
+                ent, floor = calculate_floor_entracne_number(
+                    flat_number=k1, floors_in_town=M, flats_on_floor=flats_on_floor)
             elif ent != nentrance and ent != 0:
                 ent = 0
             elif floor != nfloor and floor != 0:
